@@ -22,7 +22,7 @@ def get_points(im):
 	for i in range(1, a.shape[0]-1):
 		for j in range(1, a.shape[1] -1):
 			if a[i,j] == 0:
-				pts.append((i,j))
+				pts.append((j,i))
 	return pts
 def text2points(text, pos = (20,20), font = "arial.ttf", fontsize = 60, width = 400, height =300):
 	im = text2image(text, pos, font , fontsize , width , height)
@@ -36,9 +36,11 @@ def main():
 
 	# plt.imshow(im)
 	for p in pts:
-		plt.plot(p[1], height - p[0], '.k')
+		plt.plot(p[0], height - p[1], '.k')
 	print("fim")
 	plt.show()
+
+
 
 if __name__ == "__main__":
     main()
