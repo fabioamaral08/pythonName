@@ -25,7 +25,14 @@ def get_points(im):
 	for i in range(1, a.shape[0]-1):
 		for j in range(1, a.shape[1] -1):
 			if a[i,j] == 0:
-				pts.append((j+1,i+1))
+				add = True
+				for p in pts:
+					d = np.linalg.norm(np.array([p[0] - j, p[1] - i]))
+					if d <= 4.0:
+						add = False
+						break
+				if add:
+					pts.append((j,i))
 	return pts
 def text2points(text, pos = (20,20), font = "arial.ttf", fontsize = 60, width = 400, height =300):
 	im = text2image(text, pos, font , fontsize , width , height)

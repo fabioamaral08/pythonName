@@ -30,25 +30,25 @@ if __name__ == '__main__':
 
 		pt = Point(x,y, p[0], p[1])
 		PONTOS.append(pt)
-	PONTOS2 = []
-	for i in range(len(PONTOS)):
-		if PONTOS[i].removed:
-			continue
-		for j in range(i+1, len(PONTOS)):
-			d = np.linalg.norm(PONTOS[i].alvo - PONTOS[j].alvo)
-			# print(d)
-			if d <= 4.0:
-				if not PONTOS[i].removed :
-					x = np.random.randint(0,WIDTH)
-					y = np.random.randint(0,HEIGHT)
-					PONTOS[i].removed = True
-					PONTOS[j].removed = True
-					PONTOS2.append(Point(x,y, PONTOS[i].alvo[0], PONTOS[i].alvo[1]))
-				else:
-					PONTOS[j].removed = True
+	# PONTOS2 = []
+	# for i in range(len(PONTOS)):
+	# 	if PONTOS[i].removed:
+	# 		continue
+	# 	for j in range(i+1, len(PONTOS)):
+	# 		d = np.linalg.norm(PONTOS[i].alvo - PONTOS[j].alvo)
+	# 		# print(d)
+	# 		if d <= 4.0:
+	# 			if not PONTOS[i].removed :
+	# 				x = np.random.randint(0,WIDTH)
+	# 				y = np.random.randint(0,HEIGHT)
+	# 				PONTOS[i].removed = True
+	# 				PONTOS[j].removed = True
+	# 				PONTOS2.append(Point(x,y, PONTOS[i].alvo[0], PONTOS[i].alvo[1]))
+	# 			else:
+	# 				PONTOS[j].removed = True
 				
-	print(len(PONTOS2))
-	PONTOS = PONTOS2
+	# print(len(PONTOS2))
+	# PONTOS = PONTOS2
 
 
 
