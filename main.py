@@ -19,7 +19,7 @@ def create_circle(self, x, y, r, **kwargs):
 PONTOS = []
 if __name__ == '__main__':
 	setattr(type(canvas), 'create_circle', create_circle)
-	pts = Text2Point.text2points("E O MESTRADO?", pos = (40, 110), fontsize = 30)
+	pts = Text2Point.text2points("E O MESTRADO?", pos = (40, 110), fontsize = 50, font = 'allura.ttf', width = WIDTH, height = HEIGHT)
 	i = 0
 	for p in pts:
 		i += 1
@@ -37,13 +37,16 @@ if __name__ == '__main__':
 		for j in range(i+1, len(PONTOS)):
 			d = np.linalg.norm(PONTOS[i].alvo - PONTOS[j].alvo)
 			# print(d)
-			if d < 5.0:
-				x = np.random.randint(0,WIDTH)
-				y = np.random.randint(0,HEIGHT)
-				PONTOS[i].removed = True
-				PONTOS[j].removed = True
-				PONTOS2.append(Point(x,y, PONTOS[i].alvo[0], PONTOS[i].alvo[1]))
-				break
+			if d <= 4.0:
+				if not PONTOS[i].removed :
+					x = np.random.randint(0,WIDTH)
+					y = np.random.randint(0,HEIGHT)
+					PONTOS[i].removed = True
+					PONTOS[j].removed = True
+					PONTOS2.append(Point(x,y, PONTOS[i].alvo[0], PONTOS[i].alvo[1]))
+				else:
+					PONTOS[j].removed = True
+				
 	print(len(PONTOS2))
 	PONTOS = PONTOS2
 
@@ -56,6 +59,7 @@ if __name__ == '__main__':
 		y = canvas.winfo_pointery() - canvas.winfo_rooty()
 
 		canvas.create_circle(x,y,2,fill='red')
+		canvas.create_text(x, y+5, text = f'({x},{y})', fill = 'white' )
 		for p in PONTOS:
 			p.behaviors(np.array([x,y], dtype = np.float64))
 			p.update()
