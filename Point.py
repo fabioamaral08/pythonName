@@ -2,7 +2,7 @@ import numpy as np
 
 class Point(object):
 	def __init__(self, x,y,xt, yt):
-		self.r = 1
+		self.r = 0
 		self.pos  = np.array([x,y], dtype = np.float64)
 		self.alvo = np.array([xt,yt], dtype = np.float64	)
 		self.vel  = (np.random.rand(2) -.5) * 2
@@ -15,8 +15,11 @@ class Point(object):
 		self.vel += self.acel
 		self.acel *= 0
 
-	def show(self, C):
-		C.create_circle(self.pos[0], self.pos[1], self.r, fill = 'white', outline = '')
+	def show(self, C, first = False):
+		if first:
+			C.create_circle(self.pos[0], self.pos[1], self.r, fill = 'red', outline = '')
+		else:
+			C.create_circle(self.pos[0], self.pos[1], self.r, fill = 'white', outline = '')
 
 	def behaviors(self, target):
 		seek = self.seek()

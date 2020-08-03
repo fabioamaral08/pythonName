@@ -22,12 +22,12 @@ def get_points(im):
 	a = np.array(im)
 	# grayscale
 	pts = []
-	for i in range(1, a.shape[0]-1):
-		for j in range(1, a.shape[1] -1):
+	for j in range(1, a.shape[1]-1):
+		for i in range(1, a.shape[0] -1):
 			if a[i,j] == 0:
 				add = True
 				for p in pts:
-					d = np.linalg.norm(np.array([p[0] - j, p[1] - i]))
+					d = np.linalg.norm(np.array([p[0] - j, p[1] - i]),2)
 					if d <= 4.0:
 						add = False
 						break
